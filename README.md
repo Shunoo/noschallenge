@@ -1,16 +1,22 @@
 # QA challenge
 
 ## Escolher uma ferramenta para automatizar testes à seguinte Api REST, explica o porquê dessa escolha. https://gorest.co.in/
-Escolhi o Cypress.js porque tenho mais de três anos de experiência com essa ferramenta e possuo profundo conhecimento de seu uso. Embora o Cypress seja amplamente conhecido por testes de UI, ele oferece ótimo suporte para testes de APIs.
-Idealmente, a escolha de uma ferramenta deveria levar em conta a padronização da linguagem usada para diferentes tipos de testes, como testes de UI, API e até mesmo Load Testing (se possível). Isso facilita a adaptação dos testers ao alternarem entre diferentes tipos de testes, aumentando a eficiência da equipe e simplificando o processo de manutenção de código.
+I chose Cypress.js because I have over three years of experience with this tool and possess advance knowledge of its usage. Although Cypress is widely known for UI testing, it also offers great support for API testing.
+Ideally, in the choice of a tool, we should consider the standardization of the language used for different types of testing, such as UI testing, API testing, and even load testing (if possible). This facilitates testers adaptation when switching between different types of tests, increasing team efficiency and simplifying the code maintenance process.
 
 
 ## Explica os use case de teste;
 
-- Schema Validation - garantir que a resposta segue o formato correto validando os tipos de dados, campos obrigatórios e estrutura apresentável  
-- HTTP Validation - garantir que as respostas retorna o código de http correto como por exemplo 200 que representa OK e 201 que representa Criado
-- Field Validation - Validação de campos específicos como por exemplo enumeradores como por exemplo (status)
-- Date Validation - Validação de datas se seguem o formato correto e se é uma data válida
+- Schema Validation - Ensure that the response follows the correct format by validating data types, required fields, and the overall structure.
+- HTTP Validation - Ensure that the responses return the correct HTTP status codes, such as 200 for OK and 201 for Created.
+- Field Validation - Validate specific fields, such as enumerators like status.
+- Date Validation - Validate that dates follow the correct format and are valid dates
+
+## Explica e justifica uma implementação de testes de carga a esta API;
+I would choose k6 because, like Cypress, it uses JavaScript as the programming language.
+The tool is open-source and easy to configure.
+It integrates with CI/CD, meaning that load tests can be part of the pipelines.
+The reports are detailed and easy to understand, allowing for quick and intuitive analysis.
 
 ## How to run the tests
 
@@ -26,3 +32,42 @@ To run the tests your machine requires the following steps:
     - select the test file
  - with headless mode = `npx cypress run`
     - the resulsts are in the folder named `videos`
+
+## Load Testing
+
+Load testing has the objective to check how the API respondes withing a significant amount of traffic simulating real time usage in large scale.
+
+With these tests we can optimize, improve and prevent our infrastructure to break 
+
+## How to use
+To use the load testing you need to install the k6
+
+- Open terminal
+- write `winget install k6 --source winget`
+- In the terminal write `k6 run k6/todos.js`
+
+
+
+Source: https://grafana.com/docs/k6/latest/set-up/install-k6/~
+
+
+## How to implement on the pipeline
+ I don't have much experience in implemeting the pipelines in my professional carreer all the pipeliens where already created but i believe this is a template to implement one
+`
+ stages:
+  - test
+  - load-test
+
+test:
+  script:
+    - npm install
+    - npx cypress run  # Executa os testes funcionais com Cypress
+
+load-test:
+  script:
+    - k6 run load-test.js  # Executa o teste de carga com k6
+`
+The usage of pipeline and continuous testing allows us to have
+
+- Continous validation = We can push new features to the pipeline and the regression will always run garating that everything is tested 
+- Automation and quick feedback = withing a click of a push in git the pipeline will run and we can have a quick feedback if anything has been broken or not
