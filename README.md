@@ -53,21 +53,8 @@ Source: https://grafana.com/docs/k6/latest/set-up/install-k6/~
 
 ## How to implement on the pipeline
  I don't have much experience in implemeting the pipelines in my professional carreer all the pipeliens where already created but i believe this is a template to implement one
-"
-   stages:
-   - test
-   - load-test
 
-   test:
-   script:
-      - npm install
-      - npx cypress run  # Executa os testes funcionais com Cypress
+[a link](https://github.com/Shunoo/noschallenge/blob/main/ci_cd.template.txt)
 
-   load-test:
-   script:
-      - k6 run load-test.js  # Executa o teste de carga com k6
-
-   The usage of pipeline and continuous testing allows us to have
-"
 - Continous validation = We can push new features to the pipeline and the regression will always run garating that everything is tested 
 - Automation and quick feedback = withing a click of a push in git the pipeline will run and we can have a quick feedback if anything has been broken or not
