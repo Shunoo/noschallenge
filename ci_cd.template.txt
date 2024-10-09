@@ -1,0 +1,14 @@
+ stages:
+   - test
+   - load-test
+
+   test:
+   script:
+      - npm install
+      - npx cypress run  # Executa os testes funcionais com Cypress
+
+   load-test:
+   script:
+      - k6 run load-test.js  # Executa o teste de carga com k6
+
+   The usage of pipeline and continuous testing allows us to have
